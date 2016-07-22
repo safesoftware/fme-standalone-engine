@@ -1,0 +1,29 @@
+
+version: "2"
+services:
+ fmeengine:
+  image: safesoftware/fme-engine-2017
+  volumes:
+   - ./results:/fmeengine/results
+   - ./workspaces:/fmeengine/workspaces
+   - ./logs:/fmeengine/logs
+  environment:
+   - TCP_PORTS=7777
+ apache:
+  image: httpd:alpine
+  volumes:
+   - ./results:/usr/local/apache2/htdocs/
+  ports:
+   - 80:80
+
+ lb:
+  image: dockercloud/haproxy
+  links:
+   - fmeengine
+  volumes:
+   - /var/run/docker.sock:/var/run/docker.sock
+  environment:
+   - MODE=tcp
+  ports:
+   - 7777:7777
+
