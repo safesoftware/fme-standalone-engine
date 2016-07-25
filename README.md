@@ -34,6 +34,6 @@ Refresh the page being served on your localhost to see the additional reports th
 
 These containers are all running on your single host, but it isn't that much of a stretch to imagine these containers spread over multiple hosts, able to be scaled when required.
 
-# Shutting everything down.
+## Shutting everything down.
 
 After you are done you can stop the services by running `stop_containers.sh` or `stop_containers.ps1`.
