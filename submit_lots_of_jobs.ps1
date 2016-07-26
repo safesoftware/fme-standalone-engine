@@ -1,7 +1,7 @@
 $startDTM = (Get-Date)
 
 $scriptDir = $PSScriptRoot
-$cities = @("Vancouver", "Amersfoort", "Anaheim", "Atlanta", "Austin", "Barcelona", "Beijing", "Belfast", "Bengaluru", "Birmingham", "Boston", "Brisbane", "Calagry", "Cardiff", "Denver", "Edinburgh", "Edmonton", "Espoo", "Essen", "Guangzhou" )
+$cities = @("Vancouver", "Amersfoort", "Anaheim", "Atlanta", "Austin", "Barcelona", "Beijing", "Belfast", "Bengaluru", "Birmingham", "Boston", "Brisbane", "Calagry", "Cardiff", "Denver", "Edinburgh", "Edmonton", "Espoo", "Essen", "Guangzhou", "Houston", "Jinan", "Kunming", "Leuven", "London", "Lyon", "Madrid", "Manchester")
 
 $submitJob = {
     param ([String]$scriptDir, [String]$city)
@@ -11,7 +11,7 @@ $submitJob = {
 # Loop through each city and submit a job for each
 $Jobs = @()
 foreach ($city in $cities) {
-	Write-Host "Submitting job for report on city of $city..."
+    Write-Host "Submitting job for report on city of $city..."
     $Jobs += Start-Job -ScriptBlock $submitJob -ArgumentList $scriptDir, $city -Name $city
 }
 
